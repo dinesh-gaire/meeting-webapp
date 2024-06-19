@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting App</title>
+  <link rel="stylesheet" href="public/assets/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="container">
+        <div class="logo">
+          <img src="logo.png" alt="Logo">
+          <h1>Meeting App</h1>
+        </div>
+        <div class="nav-buttons">
+          <a href="#" class="btn">Sign In</a>
+          <a href="#" class="btn join-meeting">Join a Meeting</a>
+          <a href="#" class="btn primary new-meeting">Start a Meeting</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="hero-text">
+        <h2>Your Virtual Meeting Solution</h2>
+        <p>A powerful tool for seamless virtual collaboration, with HD video calls, screen sharing, and real-time chat.</p>
+      </div>
+    </div>
+  </header>
+
+  <section id="new-meeting">
+    <div class="container">
+      <a href="#" class="btn primary new-meeting">New Meeting</a>
+    </div>
+  </section>
+
+  <section id="join-meeting">
+    <div class="container">
+      <h2>Join a Meeting</h2>
+        <input class="enter-code" type="text" placeholder="Enter Meeting ID">
+        <button type="submit" class="btn primary join-action">Join</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Meeting App. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(function(){
+        $(document).on("click", ".join-meeting", function(){
+            $(".enter-code").focus()
+        })
+        $(document).on("click", ".join-action", function(){
+            var join_value = $('.enter-code').val();
+            var meetingUrl= window.location.origin+"?meetingID="+join_value;
+            window.location.replace(meetingUrl);
+        })
+        $(document).on("click", ".new-meeting", function(){
+            var meetingID = Math.floor(Math.random()*100000000);
+            var meetingUrl= window.location.origin+"?meetingID="+meetingID;
+            window.location.replace(meetingUrl);
+        })
+
+    })
+  </script>
+</body>
+</html>
