@@ -8,6 +8,12 @@ var AppProcess=(function(){
     var audio;
     var isAudioMute = true;
     var rtp_aud_senders;
+    var video_states = {
+        None:0,
+        Camera:1,
+        ScreenShare:2
+    }
+    var video_st = video_states.None;
 
     async function _init(SDP_function, my_connid){
         serverProcess = SDP_function;
@@ -35,6 +41,22 @@ var AppProcess=(function(){
                 removeMediaSenders(rtp_aud_senders);
             }
             isAudioMute = !isAudioMute;
+        })
+
+        $("#videoCamOnOff").on("click", async function(){
+            if(video_st = video_states.Camera){
+                await videoProcess(video_states.None);
+            }else{
+                await videoProcess(video_states.Camera);
+            }
+        })
+
+        $("#screenShareOnOff").on("click", async function(){
+            if(video_st = video_states.ScreenShare){
+                await videoProcess(video_states.None);
+            }else{
+                await videoProcess(video_states.ScreenShare);
+            }
         })
     }
 
